@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+ text-align:center
+}
+h2 {
+text-align:center
+}
+</style>
+</head>
+<body<>
+<h1>HANGMAN GAME</h1><br><br>
+<h2><strong> Choose your cathegory:</2><br><br>
+<button type="button" onclick="randomAnimal()"> Animals </button> 
+<button type="button" onclick="randomCountry()"> Countries </button> <br><br>  
+Check for letter: <input type="text" id="letter">
+<button type="button" onclick="addLetter()"> Check it! </button><br><br>
+<h1 id="theWord"></h1>
+<button type="button" onclick="getHint()"> Hint </button><br>
+<p id="hintText"></p>
+<button type="button" onclick="location.reload()"> Play Again </button><br><br>
+<p id="message"></p>
+<p id="message2"></p>
+
+<script src="index4.js"></script>
+</body>
+</html>
