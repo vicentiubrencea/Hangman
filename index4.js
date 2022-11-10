@@ -1,10 +1,7 @@
 let animals = ["CAT", "FROG", "DOG", "HORSE", "CHICKEN", "TURTLE", "CROCODILE", "GIRAFE", "BUTTERFLY", "SNAKE"];
-
 let hintAnimals = ["Likes milk", "Sings in the lake", "Best friend", "Majestic creature", "Skinny legs, tastes good", "Most chill movement",
 "His grandpa was a T-Rex", "Lives in savanna", "Used to be a worm", "Lightling-fast bite"];
-
 let countries = ["ROMANIA", "ITALY","FRANCE","SPAIN","ENGLAND", "MEXICO", "CHINA", "GERMANY", "TURKEY", "INDIA"];
-
 let hintCountries = ["Country of Dracula", "Best pizza", "Country in Europe with iconic iron tower", "Best sangria", "Country of soccer",
 "You can find mariachi", "Cheep products", "Country with top european car brands", "You can hear an imam singing", "Spicy food"];
 
@@ -12,10 +9,10 @@ let randomIndex, word, displayWord = "", hint, cathegorySelected = 0;
 
 function randomWord(wordArray, hintArray) {
     if (cathegorySelected == 0) {   
-    randomIndex = Math.floor(Math.random() * wordArray.length);
-    word = wordArray[randomIndex];
-    hint = hintArray[randomIndex];   
-    generateDisplayWord(word);
+        randomIndex = Math.floor(Math.random() * wordArray.length);
+        word = wordArray[randomIndex];
+        hint = hintArray[randomIndex];   
+        generateDisplayWord(word);
     }
     cathegorySelected = 1;
 }
@@ -54,21 +51,24 @@ function addLetter() {
         document.getElementById("theWord").innerHTML = displayWord;
         if (isFound == 1) {
             document.getElementById("message").innerHTML = "Nice!"; 
-        } else if (isFound == 0) {
+        } else {
             --lives; 
             document.getElementById("message").innerHTML = "Try another letter!";
             document.getElementById("message2").innerHTML = "Number of lives left: " + lives;       
         }
         if (lettersFound == word.length) {
-            document.getElementById("message").innerHTML = "Good Job, YOU WON!";
-            displayWord = "";
+            document.getElementById("message2").innerHTML = "Good Job, YOU WON!";
+            document.getElementById("message").innerHTML = "";
         }
-        if (lives == 0) {
-            document.getElementById("message").innerHTML = "GAME OVER! Good luck next time!";
+        if (lives <= 0) {
+            document.getElementById("message2").innerHTML = "GAME OVER! Good luck next time!";
+            document.getElementById("message").innerHTML = "";
         }
-        document.getElementById("letter").value ="";
+        document.getElementById("letter").value = "";
+    } else if (letter.trim().length != 1 && (lettersFound == word.length || lives <= 0)) {
+        document.getElementById("message").innerHTML = "";
     } else {
-        document.getElementById("message").innerHTML = "Please enter ONE letter";
+        document.getElementById("message").innerHTML = "Enter One letter";
     }
 }   
 
