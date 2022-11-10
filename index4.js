@@ -1,30 +1,30 @@
 let animals = ["CAT", "FROG", "DOG", "HORSE", "CHICKEN", "TURTLE", "CROCODILE", "GIRAFE", "BUTTERFLY", "SNAKE"];
+
 let hintAnimals = ["Likes milk", "Sings in the lake", "Best friend", "Majestic creature", "Skinny legs, tastes good", "Most chill movement",
-"His grandpa was a T-Rex", "Lives in savanna", "Used to be a worm", "Lightling-fast bite"]
-let countries = ["ROMANIA", "ITALY","FRANCE","SPAIN","ENGLAND", "MEXICO", "CHINA", "GERMANY", "TURKEY", "INDIA"]
+"His grandpa was a T-Rex", "Lives in savanna", "Used to be a worm", "Lightling-fast bite"];
+
+let countries = ["ROMANIA", "ITALY","FRANCE","SPAIN","ENGLAND", "MEXICO", "CHINA", "GERMANY", "TURKEY", "INDIA"];
+
 let hintCountries = ["Country of Dracula", "Best pizza", "Country in Europe with iconic iron tower", "Best sangria", "Country of soccer",
-"You can find mariachi", "Cheep products", "Country with top european car brands", "You can hear an imam singing", "Spicy food"]
+"You can find mariachi", "Cheep products", "Country with top european car brands", "You can hear an imam singing", "Spicy food"];
 
 let randomIndex, word, displayWord = "", hint, cathegorySelected = 0;
 
-function randomAnimal() {
-    if (cathegorySelected == 0) {
-        randomIndex = Math.floor(Math.random() * animals.length);
-        word = animals[randomIndex];
-        hint = hintAnimals[randomIndex];
-        generateDisplayWord(word);
+function randomWord(wordArray, hintArray) {
+    if (cathegorySelected == 0) {   
+    randomIndex = Math.floor(Math.random() * wordArray.length);
+    word = wordArray[randomIndex];
+    hint = hintArray[randomIndex];   
+    generateDisplayWord(word);
     }
     cathegorySelected = 1;
 }
 
-function randomCountry() {
-    if (cathegorySelected == 0) {
-        randomIndex = Math.floor(Math.random() * countries.length);
-        word = countries[randomIndex];
-        hint = hintCountries[randomIndex];
-        generateDisplayWord(word);
-    }
-    cathegorySelected = 1;
+document.getElementById("animals").onclick = function() {
+    randomWord(animals, hintAnimals);
+}
+document.getElementById("countries").onclick = function() {
+    randomWord(countries, hintCountries);
 }
 
 function generateDisplayWord(text) {
@@ -53,7 +53,7 @@ function addLetter() {
         } 
         document.getElementById("theWord").innerHTML = displayWord;
         if (isFound == 1) {
-            document.getElementById("message").innerHTML = "Nice!!"; 
+            document.getElementById("message").innerHTML = "Nice!"; 
         } else if (isFound == 0) {
             --lives; 
             document.getElementById("message").innerHTML = "Try another letter!";
@@ -62,12 +62,11 @@ function addLetter() {
         if (lettersFound == word.length) {
             document.getElementById("message").innerHTML = "Good Job, YOU WON!";
             displayWord = "";
-
         }
         if (lives == 0) {
             document.getElementById("message").innerHTML = "GAME OVER! Good luck next time!";
         }
-            document.getElementById("letter").value ="";
+        document.getElementById("letter").value ="";
     } else {
         document.getElementById("message").innerHTML = "Please enter ONE letter";
     }
